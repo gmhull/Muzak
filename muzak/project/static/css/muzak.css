@@ -1,0 +1,122 @@
+/* /////////////////////////////////////////////////////////////////////////////
+Imports
+///////////////////////////////////////////////////////////////////////////// */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@700&family=Oleo+Script+Swash+Caps:wght@700');
+
+/* /////////////////////////////////////////////////////////////////////////////
+Overall
+///////////////////////////////////////////////////////////////////////////// */
+:root {
+  /* Colors */
+  --xanadu: #687864;
+  --cg-blue: #31708E;
+  --steel-blue: #5085A5;
+  --pale-cerulean: #8FC1E3;
+  --cultured: #F7F9FB;
+  /* Font Families */
+  --blocky: 'Kanit', sans-serif;
+  --curvy: 'Oleo Script Swash Caps', cursive;
+}
+
+body {
+  background-color: var(--cg-blue);
+  color: var(--cultured);
+  font-family: var(--curvy);
+}
+
+p {}
+
+/* /////////////////////////////////////////////////////////////////////////////
+Navbar
+///////////////////////////////////////////////////////////////////////////// */
+#top-navbar {
+  padding-bottom: 50px;
+  position: absolute;
+}
+
+.top-nav-menu {
+  background-color: var(--steel-blue);
+  color: var(--cultured);
+}
+
+.top-nav-menu a {
+  color: inherit;
+}
+
+.top-nav-menu a:hover {
+  color: var(--xanadu);
+}
+
+.navbar-toggler {
+  color: var(--pale-cerulean);
+}
+
+/* /////////////////////////////////////////////////////////////////////////////
+Hero
+///////////////////////////////////////////////////////////////////////////// */
+#hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url(https://wallpapercave.com/wp/wp1994312.jpg) center center;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#hero .container {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  height: 60%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+#hero .title {
+  font-family: var(--blocky);
+  font-size: 15vw;
+  font-weight: 900;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  margin: auto;
+  text-transform: uppercase;
+  background: linear-gradient(219deg,
+      var(--xanadu) 19%,
+      transparent 19%, transparent 20%,
+      var(--cg-blue) 20%, var(--cg-blue) 39%,
+      transparent 39%, transparent 40%,
+      var(--steel-blue) 40%, var(--steel-blue) 59%,
+      transparent 59%, transparent 60%,
+      var(--pale-cerulean) 60%, var(--pale-cerulean) 79%,
+      transparent 79%, transparent 80%,
+      var(--cultured) 80%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* /////////////////////////////////////////////////////////////////////////////
+Footer
+///////////////////////////////////////////////////////////////////////////// */
+#footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  background: var(--xanadu);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+/* /////////////////////////////////////////////////////////////////////////////
+Profile
+///////////////////////////////////////////////////////////////////////////// */

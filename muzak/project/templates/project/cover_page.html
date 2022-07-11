@@ -1,0 +1,35 @@
+{% extends "project/top_navbar.html" %}
+{% load static %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Add content in here -->
+<section id="hero">
+  <div class="container">
+    <div class="title">
+      <h1>MUZAK</h1>
+      <h1>MUZAK</h1>
+      <h1>MUZAK</h1>
+      <h1>MUZAK</h1>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="howdy">
+      <p>{{ user }}</p>
+      <p>{{ user.username }}</p>
+      <p>{{ user.first_name }}</p>
+      <p>{{ user.email }}</p>
+      <p>{{ user.groups }}</p>
+      <a href="{% url 'logout' %}">Log out</a>
+    </div>
+    {% else %}
+    <div class="howdy">
+      <a href="{% url 'social:begin' 'spotify' %}">Spotify</a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}
