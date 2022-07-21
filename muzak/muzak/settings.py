@@ -31,14 +31,17 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'project',
+    'leagues',
+    'social_django',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'project',
-    'social_django',
+    'storages',
+    'nested_inline',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +143,37 @@ AUTHENTICATION_BACKENDS = (
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+
+AUTH_USER_MODEL = 'project.MuzakUser'
+
+# Grab the AWS S3 bucket info from environment variables
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_MUZAK_BUCKET_NAME')
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'static'
+# Make all of the files we save hav epublic read access.  Allows the website to see the files.
+AWS_DEFAULT_ACL = 'public-read'
+
+# Point the site to the location of static files when collecting
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'project/static'),
+]
+# Provide a url for media files
+MEDIA_URL = 'https://%s/media/' % (AWS_S3_CUSTOM_DOMAIN)
+
+# Control where default files are stored
+DEFAULT_FILE_STORAGE = 'muzak.storage_backends.MediaStorage'
+
+# Local vs. Prod Settings
+if os.environ.get('Local') == 'True':
+    STATIC_URL = '/static/'
+else:
+    # Provide a url for static files
+    STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+    # Control where static files are stored
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'

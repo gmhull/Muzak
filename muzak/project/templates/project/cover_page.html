@@ -16,18 +16,11 @@
       <h1>MUZAK</h1>
     </div>
     {% if user.is_authenticated %}
-    <div class="howdy">
-      <p>{{ user }}</p>
-      <p>{{ user.username }}</p>
-      <p>{{ user.first_name }}</p>
-      <p>{{ user.email }}</p>
-      <p>{{ user.groups }}</p>
-      <a href="{% url 'logout' %}">Log out</a>
-    </div>
+    <!-- <a href="{% url 'logout' %}">Log out</a> -->
     {% else %}
-    <div class="howdy">
+    <!-- <div class="">
       <a href="{% url 'social:begin' 'spotify' %}">Spotify</a>
-    </div>
+    </div> -->
     {% endif %}
   </div>
 </section>

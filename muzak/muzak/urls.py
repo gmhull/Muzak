@@ -21,4 +21,5 @@ urlpatterns = [
     path('social/', include('social_django.urls')),
     path('logout/', include('django.contrib.auth.urls')),
     path('', include('project.urls')),
+    path('leagues/', include('leagues.urls')),
 ]
