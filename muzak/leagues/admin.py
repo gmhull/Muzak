@@ -1,14 +1,14 @@
 from django.contrib import admin
-from leagues.models import League, Player, Round, Song
+from leagues.models import League, PlayerManager, Round, Song
 from project.models import MuzakUser
 from nested_inline.admin import NestedStackedInline, NestedModelAdmin
 
 
 # Register your models here.
 class PlayerInline(admin.TabularInline):
-    model = Player
+    model = PlayerManager
     list_display = ('nickname', 'points',)
-    extra = 1
+    extra = 0
 
 class SongInline(NestedStackedInline):
     model = Song
@@ -23,7 +23,8 @@ class RoundInline(NestedStackedInline):
 
 class LeagueAdmin(NestedModelAdmin):
     list_display = ('name', 'description',)
-    inlines = [RoundInline]
+    prepopulated_fields = {'slug': ('name',)}
+    inlines = [RoundInline,]
 
 
 admin.site.register(League, LeagueAdmin)

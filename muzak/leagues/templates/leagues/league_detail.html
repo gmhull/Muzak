@@ -1,0 +1,22 @@
+{% extends "project/top_navbar.html" %}
+{% load static %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Add content in here -->
+<div class="container" style="margin-top: 60px;">
+  <h1>League Detail</h1>
+  <!-- <h2>{{ league.name }}</h2> -->
+  {% for round in round_list %}
+    <div class="container">
+      <h1>{{ round.title }}</h1>
+      <p>{{ round.description }}</p>
+      <p>{{ round.status }}</p>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

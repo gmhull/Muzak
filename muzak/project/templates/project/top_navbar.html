@@ -15,7 +15,7 @@
         <ul class="navbar-nav">
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link active" href="/">My Leagues</a>
+            <a class="nav-link active" href="{% url 'league_home' %}">My Leagues</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'profile' %}">Profile</a>

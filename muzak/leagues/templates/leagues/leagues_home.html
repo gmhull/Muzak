@@ -1,0 +1,22 @@
+{% extends "project/top_navbar.html" %}
+{% load static %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Add content in here -->
+<div class="container">
+  <h1>Leagues Home</h1>
+  {% for league in league_list %}
+  <div class="container">
+    <h4><a href="{% url 'league_detail' league.slug %}"> {{league.name}} </a></h4>
+    <p>{{ league.description|safe|truncatewords:15 }}</p>
+    <p><i>{{ league.date_created|date:"M, Y" }}</i></p>
+  </div>
+  {% endfor %}
+</div>
+
+
+{% endblock %}

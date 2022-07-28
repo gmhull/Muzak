@@ -206,27 +206,27 @@ Profile
   transform: translate(-50%, -50%);
 } */
 .car-tires path {
-  fill: blue;
+  fill: #444;
   stroke: #000;
   animation: small-bump 10s linear infinite;
 }
 .tire-rim path {
-  fill: red;
+  fill: silver;
   animation: small-bump 10s linear infinite;
 }
 .car-body path {
-  fill: green;
+  fill: silver;
   stroke: #234;
 }
 .car-windows path {
-  fill: yellow;
+  fill: black;
   stroke: #567;
 }
 .headlight path {
-  fill: purple;
+  fill: yellow;
   stroke: #987;
 }
 .taillight path {
-  fill: orange;
+  fill: red;
   stroke: #456;
 }
