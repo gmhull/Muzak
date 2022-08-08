@@ -1,6 +1,6 @@
 from django.urls import path, include, re_path
 from . import views
-from .views import LeagueListView, LeagueDetailView, RoundListView
+from .views import LeagueListView, LeagueDetailView, LeagueStandingsListView, RoundResultsListView
 from .models import League
 
 urlpatterns = [
@@ -8,13 +8,12 @@ urlpatterns = [
     path('', LeagueListView.as_view(), name='league_home'),
     path('<slug:slug>/', include([
         path('', LeagueDetailView.as_view(), name='league_detail'),
-        # path('', RoundListView.as_view(), name='league_detail'),
-        path('standings/', views.league_standings, name='league_standings'),
-        path('round_<int:id>/', include([
+        path('standings/', LeagueStandingsListView.as_view(), name='league_standings'),
+        path('round_<int:pk>/', include([
             path('', views.league_round, name='league_round'),
             path('voting/', views.round_voting, name='round_voting'),
-            path('results/', views.round_results, name='round_results'),
+            path('results/', RoundResultsListView.as_view(), name='round_results'),
+            path('submit/', views.song_submission, name='song_submission'),
         ]))
     ]))
-
 ]

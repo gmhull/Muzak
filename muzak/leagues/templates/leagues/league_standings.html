@@ -9,6 +9,15 @@
 <!-- Add content in here -->
 <div class="container">
   <h1>League Standings</h1>
+  <p>Here are all of the people with points in this league.</p>
+
+  {% for player in player_list %}
+  <div class="container">
+    <h1>{{ player.nickname }}</h1>
+    <h2>{{ player.points }}</h2>
+  </div>
+  {% endfor %}
+
 </div>
 
 

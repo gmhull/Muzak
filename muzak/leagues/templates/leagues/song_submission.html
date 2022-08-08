@@ -1,0 +1,47 @@
+{% extends "project/top_navbar.html" %}
+{% load static %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+<!-- Add content in here -->
+<div class="container" style="margin-top: 60px;">
+  <h1>Song Submission</h1>
+  <p>{{ round }}</p>
+
+  {% if post %}
+  <h2>Song:</h2>
+  <p>{{ song_submitted.name }}</p>
+  <h2>Artist:</h2>
+  <p>{{ song_submitted.artist }}</p>
+  <h2>Album Cover:</h2>
+  <img src="{{ song_submitted.album_cover_url }}" alt="" style="width: 100px; height: auto;">
+  <a href="{% url 'song_submission' round.league.slug round.id %}">Change Song</a>
+  {% else %}
+  <form method="post"> {% csrf_token %}
+    <div class="row">
+      <p>{{song_submitted}}</p>
+      {% if song_submitted == "" %}
+      <input type="hidden" name="type" value="new_song">
+      <input type="text" name="link" placeholder="Enter Spotify Link">
+      <input type="text" name="name" placeholder="" readonly>
+      <input type="text" name="artist" placeholder="" readonly>
+      <input type="image" name="album_cover_url" alt="Album Cover" src="{{ song_submitted.album_cover_url }}" style="width: 100px; height: auto;" readonly>
+      {% else %}
+      <input type="hidden" name="type" value="change_song">
+      <input type="text" name="link" value="{{ song_submitted.link }}">
+      <input type="text" name="song" value="{{ song_submitted.name }}" readonly>
+      <input type="text" name="artist" value="{{ song_submitted.artist }}" readonly>
+      <input type="image" name="album_cover_url" alt="Album Cover" src="{{ song_submitted.album_cover_url }}" style="width: 100px; height: auto;" readonly>
+      {% endif %}
+
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+  {% endif %}
+
+</div>
+
+{% endblock %}

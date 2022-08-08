@@ -7,8 +7,9 @@
 {% block content %}
 
 <!-- Add content in here -->
-<div class="container">
+<div class="container" style="margin-top: 60px">
   <h1>Leagues Home</h1>
+  <h3>{{ user }}</h3>
   {% for league in league_list %}
   <div class="container">
     <h4><a href="{% url 'league_detail' league.slug %}"> {{league.name}} </a></h4>

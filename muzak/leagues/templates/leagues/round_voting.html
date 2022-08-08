@@ -7,8 +7,35 @@
 {% block content %}
 
 <!-- Add content in here -->
-<div class="container">
+<div class="container" style="margin-top: 60px;">
   <h1>Round Voting</h1>
+
+  <form method="post">{% csrf_token %}
+    {{formset.management_form.TOTAL_FORMS}}
+    {{formset.management_form.INITIAL_FORMS}}
+    {% for song, form in song_forms %}
+      <div class="container">
+
+        <img src="{{ song.album_cover_url }}" alt="" style="width: 100px; height: auto;">
+        <h1>{{ song.name }}</h1>
+        <p>{{ song.artist }}</p>
+        <input type="hidden" name="form-{{forloop.counter0}}-{{form.submitter.name}}" value="{{ user.id }}" id="id_form-{{forloop.counter0}}-{{form.submitter.name}}">
+        <input type="hidden" name="form-{{forloop.counter0}}-{{form.song.name}}" value="{{ song.id }}" id="id_form-{{forloop.counter0}}-{{form.song.name}}">
+
+        {% if song.submitter == player %}
+
+          <h3>You cant vote for yourself</h3>
+        {% else %}
+          <label for="id_form-{{forloop.counter0}}-{{form.vote.name}}">Vote Total:</label>
+          {{ form.vote }}
+          <label for="id_form-{{forloop.counter0}}-{{form.message.name}}">Voting Message:</label>
+          {{ form.message }}
+        {% endif %}
+      </div>
+    {% endfor %}
+    <input type="submit" value="Submit">
+  </form>
+
 </div>
 
 

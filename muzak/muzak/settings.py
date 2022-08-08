@@ -132,8 +132,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_SPOTIFY_SCOPE = ['user-read-email']
-SOCIAL_AUTH_SPOTIFY_KEY = os.environ.get('MUZAK_SPOTIFY_ID')
-SOCIAL_AUTH_SPOTIFY_SECRET = os.environ.get('MUZAK_SPOTIFY_SECRET')
+SOCIAL_AUTH_SPOTIFY_KEY = os.environ.get('SPOTIPY_CLIENT_ID')
+SOCIAL_AUTH_SPOTIFY_SECRET = os.environ.get('SPOTIPY_CLIENT_SECRET')
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',

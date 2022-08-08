@@ -9,13 +9,37 @@
 <!-- Add content in here -->
 <div class="container" style="margin-top: 60px;">
   <h1>League Detail</h1>
-  <!-- <h2>{{ league.name }}</h2> -->
+  <h2>{{ league.name }}</h2>
+  <div class="container">
+    <a href="{% url 'league_standings' league.slug %}">Standings</a>
+  </div>
   {% for round in round_list %}
-    <div class="container">
-      <h1>{{ round.title }}</h1>
-      <p>{{ round.description }}</p>
-      <p>{{ round.status }}</p>
-    </div>
+  <div class="container">
+    <h1>{{ round.title }}</h1>
+    <p>{{ round.description }}</p>
+    <p>{{ round.status }}</p>
+    <!-- Change based on whether the user has submitted or not  -->
+    {% if round.status == "past" %}
+    <!-- View the past results -->
+    <p><a href="{% url 'round_results' league.slug round.id %}">See Results</a></p>
+    {% elif round.status == "submitting" %}
+
+    <!-- Either submit a song or change submission -->
+    {% if round in rounds_user_submitted_in %}
+    <p>Change Submission</p>
+    {% else %}
+    <p>Submit Song</p>
+    {% endif %}
+    <a href="{% url 'song_submission' league.slug round.id %}">Click Here</a>
+
+    {% elif round.status == "voting" %}
+
+    <p><a href="{% url 'round_voting' league.slug round.id %}">Vote Now</a></p>
+
+    {% elif round.status == "future" %}
+    <p>This round starts soon</p>
+    {% endif %}
+  </div>
   {% endfor %}
 </div>
 
